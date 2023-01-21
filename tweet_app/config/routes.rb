@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'favorites/create'
+  #get 'favorites/destroy'
   root 'tweets#index'
   #get 'tweets/new'
   #get 'tweets/index'
@@ -7,7 +9,11 @@ Rails.application.routes.draw do
   #get 'users/index'
   #get 'users/show'
   devise_for :users
-  resources :tweets  
+
+  resources :tweets do
+    resource :favorites, only: [:create, :destroy]
+  end
+
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
